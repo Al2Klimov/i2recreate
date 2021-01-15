@@ -83,8 +83,11 @@ func main() {
 
 			i2req.Method = "DELETE"
 			i2req.URL.Path = "/v1/objects/hosts/" + url.PathEscape(name)
+			i2req.URL.RawQuery = "cascade=1"
 
 			doReq(i2req).Close()
+			i2req.URL.RawQuery = ""
+
 			log.Print("Done.")
 
 			create(name)
